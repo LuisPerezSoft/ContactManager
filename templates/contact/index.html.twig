@@ -1,39 +1,88 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Contact index{% endblock %}
+{% block title %}Contact index
+{% endblock %}
 
 {% block body %}
-    <h1>Contact index</h1>
+	<h1 class="h3 mb-2 text-gray-800">Tables</h1>
+	<p class="mb-4">Here, you'll see the contacts in an interactive table where you can easily search, sort, and paginate, with options to edit or delete each contact.</a>.</p>
 
-    <table class="table">
-        <thead>
-            <tr>
-                <th>Id</th>
-                <th>Name</th>
-                <th>Email</th>
-                <th>Phone</th>
-                <th>actions</th>
-            </tr>
-        </thead>
-        <tbody>
-        {% for contact in contacts %}
-            <tr>
-                <td>{{ contact.id }}</td>
-                <td>{{ contact.name }}</td>
-                <td>{{ contact.email }}</td>
-                <td>{{ contact.phone }}</td>
-                <td>
-                    <a href="{{ path('app_contact_show', {'id': contact.id}) }}">show</a>
-                    <a href="{{ path('app_contact_edit', {'id': contact.id}) }}">edit</a>
-                </td>
-            </tr>
-        {% else %}
-            <tr>
-                <td colspan="5">no records found</td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
 
-    <a href="{{ path('app_contact_new') }}">Create new</a>
+	<div class="card shadow mb-4">
+		<div class="card-header py-3 d-flex justify-content-between align-items-center">
+			<h6 class="m-0 font-weight-bold text-primary">Contacts</h6>
+			{# <a data-toggle="modal" data-target="#createContactModal" class="btn btn-primary"> #}
+			<a href="{{ path('app_contact_new') }}" class="btn btn-primary">
+				<span class="icon text-white-50">
+					<i class="fas fa-flag"></i>
+				</span>
+				<span class="text">New Contact</span>
+
+
+			</a>
+
+		</div>
+
+		<div class="card-body">
+			<div class="table-responsive">
+				<table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+					<thead>
+						<tr>
+							<th>Id</th>
+							<th>Name</th>
+							<th>Email</th>
+							<th>Phone</th>
+							<th>Actions</th>
+						</tr>
+					</thead>
+					<tfoot>
+						<tr>
+							<th>Id</th>
+							<th>Name</th>
+							<th>Email</th>
+							<th>Phone</th>
+							<th></th>
+						</tr>
+					</tfoot>
+					<tbody>
+						{% for contact in contacts %}
+							<tr>
+								<td>{{ contact.id }}</td>
+								<td>{{ contact.name }}</td>
+								<td>{{ contact.email }}</td>
+								<td>{{ contact.phone }}</td>
+								<td>
+									<a href="{{ path('app_contact_show', {'id': contact.id}) }}" class="btn btn-link">
+										<i class="fas fa-eye"></i>
+									</a>
+									<a href="{{ path('app_contact_edit', {'id': contact.id}) }}" class="btn btn-link">
+										<i class="fas fa-edit"></i>
+									</a>
+
+								</td>
+							</tr>
+						{% endfor %}
+
+					</tbody>
+				</table>
+			</div>
+		</div>
+	</div>
+
+	
+{% endblock %}
+{% block javascripts %}
+	{{ encore_entry_script_tags('table') }}
+
+	<script src="{{ asset('sb-admin-23/vendor/jquery/jquery.min.js') }}"></script>
+	<script src="{{ asset('sb-admin-23/vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
+	<!-- Page level plugins -->
+	<script src="{{ asset('sb-admin-23/vendor/datatables/jquery.dataTables.min.js') }}"></script>
+	<script src="{{ asset('sb-admin-23/vendor/datatables/dataTables.bootstrap4.min.js') }}"></script>
+	<script>
+		$(document).ready(function () {
+        $('#dataTable').DataTable({"pageLength": 5});
+        });
+	</script>
+
 {% endblock %}
