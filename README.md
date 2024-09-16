@@ -68,3 +68,11 @@ After logging in, you will be redirected to the dashboard page. On the left side
 
 
 *This version includes the required PHP 8.1 and Node.js 10 versions.*
+
+### Troubleshooting Database Setup
+
+If you encounter issues when starting the database container, especially on Apple Silicon (M1, M2), try running the following command to use the `docker-compose.amd.yml` file:
+
+```bash
+docker-compose -f docker-compose.amd.yml up
+```

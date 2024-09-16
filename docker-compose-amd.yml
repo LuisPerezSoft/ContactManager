@@ -1,0 +1,19 @@
+version: '3.8'
+
+services:
+  db:
+    platform: linux/amd64
+    image: 'percona:5.7'
+    container_name: db
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: contactsdb
+      MYSQL_USER: symfony
+      MYSQL_PASSWORD: symfony
+    ports:
+      - '3306:3306'
+    volumes:
+      - db_data:/var/lib/mysql
+
+volumes:
+  db_data:
