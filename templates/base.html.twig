@@ -1,19 +1,65 @@
-<!DOCTYPE html>
-<html>
-    <head>
-        <meta charset="UTF-8">
-        <title>{% block title %}Welcome!{% endblock %}</title>
-        {# Run `composer require symfony/webpack-encore-bundle`
-           and uncomment the following Encore helpers to start using Symfony UX #}
-        {% block stylesheets %}
-            {#{{ encore_entry_link_tags('app') }}#}
-        {% endblock %}
+{# templates/base.html.twig #}
 
-        {% block javascripts %}
-            {#{{ encore_entry_script_tags('app') }}#}
-        {% endblock %}
-    </head>
-    <body>
-        {% block body %}{% endblock %}
-    </body>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}My Application{% endblock %}</title>
+
+    {{ encore_entry_link_tags('app') }}
+    {# {{ encore_entry_link_tags('app_style') }} #}
+
+    {% block stylesheets %}{% endblock %}
+</head>
+<body id="page-top">
+
+    <!-- Page Wrapper -->
+    <div id="wrapper">
+
+        <!-- Sidebar -->
+        {% include 'partials/sidebar.html.twig' %}
+        <!-- End of Sidebar -->
+
+        <!-- Content Wrapper -->
+        <div id="content-wrapper" class="d-flex flex-column">
+
+            <!-- Main Content -->
+            <div id="content">
+
+                <!-- Topbar -->
+                {% include 'partials/header.html.twig' %}
+                <!-- End of Topbar -->
+
+                <!-- Begin Page Content -->
+                <div class="container-fluid">
+
+                    <!-- Breadcrumbs -->
+                    {% block breadcrumbs %}
+                        {% include 'partials/breadcrumbs.html.twig' %}
+                    {% endblock %}
+
+                    <!-- Page Content -->
+                    {% block body %}{% endblock %}
+
+                </div>
+                <!-- End of Page Content -->
+
+            </div>
+            <!-- End of Main Content -->
+
+        </div>
+        <!-- End of Content Wrapper -->
+
+    </div>
+    <!-- End of Page Wrapper -->
+
+      <!-- Bootstrap core JavaScript-->
+   
+    <!-- Page level custom scripts -->
+
+    {{ encore_entry_script_tags('app') }}
+    {% block javascripts %}{% endblock %}
+
+</body>
 </html>
