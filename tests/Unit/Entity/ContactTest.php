@@ -29,12 +29,12 @@ class ContactTest extends KernelTestCase
         $contact = new Contact();
 
         // Test Name getter and setter
-        $name = 'John Doe';
+        $name = 'Juan Alvarez';
         $contact->setName($name);
         $this->assertEquals($name, $contact->getName());
 
         // Test Email getter and setter
-        $email = 'john@example.com';
+        $email = 'juan@example.com';
         $contact->setEmail($email);
         $this->assertEquals($email, $contact->getEmail());
 
@@ -48,8 +48,8 @@ class ContactTest extends KernelTestCase
     public function testValidationSuccess(): void
     {
         $contact = new Contact();
-        $contact->setName('John Doe');
-        $contact->setEmail('john@example.com');
+        $contact->setName('Juan Alvarez');
+        $contact->setEmail('juan@example.com');
         $contact->setPhone('+1234567890');
 
         // Validate the Contact entity
@@ -93,7 +93,7 @@ class ContactTest extends KernelTestCase
     public function testInvalidEmailValidation(): void
     {
         $contact = new Contact();
-        $contact->setName('John Doe');
+        $contact->setName('Juan Alvarez');
         $contact->setEmail('invalid-email');  // Invalid email format
         $contact->setPhone('+1234567890');
 
@@ -108,8 +108,8 @@ class ContactTest extends KernelTestCase
     public function testInvalidPhoneValidation(): void
     {
         $contact = new Contact();
-        $contact->setName('John Doe');
-        $contact->setEmail('john@example.com');
+        $contact->setName('Juan Alvarez');
+        $contact->setEmail('juan@example.com');
         $contact->setPhone('invalid-phone');  // Invalid phone number format
 
         // Validate the Contact entity
