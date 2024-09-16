@@ -36,3 +36,4 @@ security:
     access_control:
         - { path: ^/dashboard, roles: ROLE_USER }
         - { path: ^/contact, roles: ROLE_USER }
+        - { path: ^/$, roles: IS_AUTHENTICATED_FULLY }
